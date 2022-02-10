@@ -1,12 +1,12 @@
 # form-template
-React で SPA なフォーム画面を作る
+React で SPA なフォーム画面を作る  
 
 ## 使用技術
 ### ルーティング
-[react-router](https://reactrouter.com/) を使用
+[react-router](https://reactrouter.com/) を使用  
 
 ### 状態管理
-[Redux（Redux Tool Kit）](https://redux-toolkit.js.org/introduction/getting-started)
+[Redux（Redux Tool Kit）](https://redux-toolkit.js.org/introduction/getting-started)  
 [redux-persist](https://github.com/rt2zz/redux-persist) ... Reduxで保持している状態を、localStorage に同期する
 
 ### 単体テスト（ページ単位のテスト）
@@ -14,14 +14,14 @@ React で SPA なフォーム画面を作る
 ```src/__tests__``` 配下にページ単位でテストを入れていく。  
 
 ### e2eテスト
-Playwright を使用。
+Playwright を使用。  
 ```e2e``` フォルダ配下にテストを入れていく。  
 
 ### フォーム作成
 [react-hook-form](https://react-hook-form.com/jp/) ... フォーム画面を作成する際の面倒ごとを簡単に実装できるようになるライブラリ。  
 
 ### APIモック
-[Mock Service Worker](https://mswjs.io/) を使用。
+[Mock Service Worker](https://mswjs.io/) を使用。  
 Service Worker のリクエストインターセプトを利用して、モック的にAPIレスポンスを実現できる。
 ローカル環境用のAPIサーバを別途立てる必要がなくなる。
 
@@ -57,11 +57,11 @@ Service Worker のリクエストインターセプトを利用して、モッ�
 
 ### pages
 ページ単位のコンポーネント。  
-urlに紐づく。
+urlに紐づく。  
 ```xxx.com/user``` なら、 ```user.tsx```。
 
 ### components
-ページコンポーネントから呼び出されるコンポーネント。
+ページコンポーネントから呼び出されるコンポーネント。  
 ```user```ページから呼び出されるコンポーネントの場合、下のような形になる。  
 ```
 components
@@ -76,8 +76,13 @@ components
 reducer やら store はここで定義する。  
 
 ### model
-（グローバルな）データ型定義は全てここに集約する。
+（グローバルな）データ型定義は全てここに集約する。  
 ※ 型定義のスコープがコンポーネントに閉じてるような場合は、別にここに入れなくて良い。
 
 ### api
 APIリクエスト周りの共通化できそうな部分に関してはここに定義する。
+
+## TODO
+
+- [ ] eslint入れる
+- [ ] husky入れる
