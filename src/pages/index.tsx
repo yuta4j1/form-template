@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom"
 const IndexPage: React.VFC<{
   toForm1: () => void
   toTodo: () => void
-}> = ({ toForm1, toTodo }) => {
+  toCatalog: () => void
+}> = ({ toForm1, toTodo, toCatalog }) => {
   return (
     <Box>
       <Link
@@ -22,6 +23,13 @@ const IndexPage: React.VFC<{
       >
         Todoリスト画面へ
       </Link>
+      <Link
+        onClick={() => {
+          toCatalog()
+        }}
+      >
+        コンポーネントカタログ画面へ
+      </Link>
     </Box>
   )
 }
@@ -34,7 +42,10 @@ const IndexPageContainer = () => {
   const toTodo = () => {
     navigate("/todo")
   }
-  return <IndexPage toForm1={toForm1} toTodo={toTodo} />
+  const toCatalog = () => {
+    navigate("/catalog")
+  }
+  return <IndexPage toForm1={toForm1} toTodo={toTodo} toCatalog={toCatalog} />
 }
 
 export default IndexPageContainer
