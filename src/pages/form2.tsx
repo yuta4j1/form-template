@@ -11,7 +11,7 @@ import {
   CheckboxGroup,
   Checkbox,
 } from "@chakra-ui/react"
-import { useForm, UseFormRegister } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { form2Update } from "../redux/reducers/formData"
 import { useAppDispatch } from "../redux/hooks"
