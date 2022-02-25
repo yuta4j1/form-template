@@ -7,6 +7,8 @@ import Index from "../pages"
 import Todo from "../pages/todo"
 import Catalog from "../pages/catalog"
 import Camera from "../pages/camera"
+import ConfirmLayout from "../pages/confirm-layout"
+import FileUpload from "../pages/file-upload"
 
 const Rooter = () => {
   return (
@@ -19,6 +21,8 @@ const Rooter = () => {
         <Route path="/todo" element={<Todo />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/camera" element={<Camera />} />
+        <Route path="/confirm-layout" element={<ConfirmLayout />} />
+        <Route path="/file-upload" element={<FileUpload />} />
       </Routes>
     </BrowserRouter>
   )

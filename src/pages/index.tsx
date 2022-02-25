@@ -7,7 +7,16 @@ const IndexPage: React.VFC<{
   toTodo: () => void
   toCatalog: () => void
   toCamera: () => void
-}> = ({ toForm1, toTodo, toCatalog, toCamera }) => {
+  toConfirmLayout: () => void
+  toFileUpload: () => void
+}> = ({
+  toForm1,
+  toTodo,
+  toCatalog,
+  toCamera,
+  toConfirmLayout,
+  toFileUpload,
+}) => {
   return (
     <Box>
       <Flex direction="column">
@@ -39,6 +48,20 @@ const IndexPage: React.VFC<{
         >
           カメラ画面へ
         </Link>
+        <Link
+          onClick={() => {
+            toConfirmLayout()
+          }}
+        >
+          レイアウト確認画面へ
+        </Link>
+        <Link
+          onClick={() => {
+            toFileUpload()
+          }}
+        >
+          ファイルアップロード画面へ
+        </Link>
       </Flex>
     </Box>
   )
@@ -58,12 +81,20 @@ const IndexPageContainer = () => {
   const toCamera = () => {
     navigate("/camera")
   }
+  const toConfirmLayout = () => {
+    navigate("/confirm-layout")
+  }
+  const toFileUpload = () => {
+    navigate("/file-upload")
+  }
   return (
     <IndexPage
       toForm1={toForm1}
       toTodo={toTodo}
       toCatalog={toCatalog}
       toCamera={toCamera}
+      toConfirmLayout={toConfirmLayout}
+      toFileUpload={toFileUpload}
     />
   )
 }
