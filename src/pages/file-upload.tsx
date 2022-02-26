@@ -1,10 +1,32 @@
 import React, { useState } from "react"
-import { Box, Input, FormControl, FormLabel, Image } from "@chakra-ui/react"
+import {
+  Box,
+  Input,
+  FormControl,
+  FormLabel,
+  Image,
+  Button,
+} from "@chakra-ui/react"
 
 const FileUpload: React.VFC<{}> = ({}) => {
   const [imgFile, setImgFile] = useState<File | null>(null)
-  if (imgFile) {
-    console.log("これは？", URL.createObjectURL(imgFile))
+  const onSubmit = () => {
+    const formData = new FormData()
+    if (imgFile) {
+      formData.append("fileData", imgFile)
+    }
+
+    const options: { method: string; body: any; headers?: any } = {
+      method: "POST",
+      body: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+
+    delete options.headers["Content-Type"]
+
+    fetch("http://localhost:1234/file_upload", options)
   }
   return (
     <Box>
@@ -23,8 +45,15 @@ const FileUpload: React.VFC<{}> = ({}) => {
             }
           }}
         />
+        <Button type="submit" onClick={onSubmit}>
+          アップロード
+        </Button>
       </FormControl>
-      <Box>{imgFile && <Image src={URL.createObjectURL(imgFile)} w="300" h="200"></Image>}</Box>
+      <Box>
+        {imgFile && (
+          <Image src={URL.createObjectURL(imgFile)} w="300" h="200"></Image>
+        )}
+      </Box>
     </Box>
   )
 }
