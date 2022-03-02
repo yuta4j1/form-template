@@ -6,8 +6,8 @@ module.exports = {
     app: "./src/index.tsx",
   },
   output: {
-    filename: "[name].[contenthash].js",
-    path: path.resolve(__dirname, "dist/w"),
+    filename: "[name].[contenthash:8].js",
+    path: path.resolve(__dirname, "dist/assets"),
   },
   module: {
     rules: [
