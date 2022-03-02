@@ -2,6 +2,7 @@ import Fastify from "fastify"
 import cors from "fastify-cors"
 import util from "util"
 import fs from "fs"
+import path from 'path'
 const { pipeline } = require("stream")
 const pump = util.promisify(pipeline)
 
@@ -11,6 +12,14 @@ const fastify = Fastify({
 
 fastify.register(cors)
 fastify.register(require("fastify-multipart"))
+fastify.register(require('fastify-static'), {
+  root: path.join(__dirname, 'assets'),
+  // prefix: '/' // optional: default '/'
+})
+
+fastify.get('*', async (request, reply) => {
+  return reply.sendFile('index.html')
+})
 
 fastify.post("/file_upload", async function (req, reply) {
   // process a single file
@@ -45,7 +54,9 @@ fastify.post("/file_upload", async function (req, reply) {
   reply.send()
 })
 
-fastify.listen(1234, "0.0.0.0", function (err, address) {
+const PORT = process.env.PORT || 8080
+
+fastify.listen(PORT, "0.0.0.0", function (err, address) {
   if (err) {
     fastify.log.error(err)
     process.exit(1)
