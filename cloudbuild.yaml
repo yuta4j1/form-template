@@ -7,7 +7,7 @@ steps:
     args: ['push', 'gcr.io/$PROJECT_ID/$IMAGE_NAME']
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
+    entrypoint: 'gcloud'
     args: ['run', 'deploy', 'webui-server', '--image', 'gcr.io/$PROJECT_ID/$IMAGE_NAME', '--region', 'asia-northeast1', '--allow-unauthenticated', '--set-env-vars', 'PORT=1234']
   images:
   - gcr.io/$PROJECT_ID/$IMAGE_NAME
