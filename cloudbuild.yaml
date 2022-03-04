@@ -8,9 +8,10 @@ steps:
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
-    args: ['run', 'deploy', 'webui-server', '--image', 'gcr.io/$PROJECT_ID/${_IMAGE_NAME}', '--region', 'asia-northeast1', '--allow-unauthenticated', '--set-env-vars', 'PORT=1234']
+    args: ['run', 'deploy', 'webui-server', '--image', 'gcr.io/$PROJECT_ID/${_IMAGE_NAME}', '--region', 'asia-northeast1', '--service-account', '${_CLOUDRUN_SERVICE_ACCOUNT}', '--allow-unauthenticated', '--set-env-vars', 'PORT=1234']
 images: ['gcr.io/$PROJECT_ID/${_IMAGE_NAME}']
 options:
   logging: CLOUD_LOGGING_ONLY
 substitutions:
   _IMAGE_NAME: webui-node
+  _CLOUDRUN_SERVICE_ACCOUNT: cloudrun-exec@sandbox-yuta4j1.iam.gserviceaccount.com
