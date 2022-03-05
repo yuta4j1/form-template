@@ -38,9 +38,9 @@ export const Form1: React.VFC<{
   return (
     <Layout>
       <Flex justify={"center"}>
-        <Box w={{ sm: "60%", base: "95%" }}>
+        <Box w={{ sm: "60%", base: "100%" }}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Spacer h={8} />
+            <Spacer h={2} />
             <FormCard>
               <FormControl isInvalid={!!errors.firstName}>
                 <FormLabel htmlFor="firstName">FirstName</FormLabel>
@@ -53,7 +53,7 @@ export const Form1: React.VFC<{
                 )}
               </FormControl>
             </FormCard>
-            <Spacer h={8} />
+            <Spacer h={2} />
             <FormCard>
               <FormControl isInvalid={!!errors.lastName}>
                 <FormLabel htmlFor="lastName">LastName</FormLabel>
@@ -66,7 +66,7 @@ export const Form1: React.VFC<{
                 )}
               </FormControl>
             </FormCard>
-            <Spacer h={8} />
+            <Spacer h={2} />
             <Input type="submit" value="次の画面へ" />
           </form>
         </Box>
