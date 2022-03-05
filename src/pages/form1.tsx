@@ -4,11 +4,16 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
+  Flex,
+  Spacer,
+  Box,
 } from "@chakra-ui/react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { form1Update } from "../redux/reducers/formData"
 import { useAppDispatch } from "../redux/hooks"
+import Layout from "../layout"
+import FormCard from "../components/common/form-card"
 
 type Form1DataType = {
   firstName: string
@@ -31,29 +36,42 @@ export const Form1: React.VFC<{
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl isInvalid={!!errors.firstName}>
-          <FormLabel htmlFor="firstName">FirstName</FormLabel>
-          <Input
-            id="firstName"
-            {...register("firstName", { required: true })}
-          />
-          {errors.firstName && errors.firstName.type === "required" && (
-            <FormErrorMessage>FirstNameは必須入力です。</FormErrorMessage>
-          )}
-        </FormControl>
-
-        <FormControl isInvalid={!!errors.lastName}>
-          <FormLabel htmlFor="lastName">LastName</FormLabel>
-          <Input id="lastName" {...register("lastName", { required: true })} />
-          {errors.lastName && errors.lastName.type === "required" && (
-            <FormErrorMessage>LastNameは必須入力です。</FormErrorMessage>
-          )}
-        </FormControl>
-        <Input type="submit" value="次の画面へ" />
-      </form>
-    </div>
+    <Layout>
+      <Flex justify={"center"}>
+        <Box w={{ sm: "60%", base: "95%" }}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Spacer h={8} />
+            <FormCard>
+              <FormControl isInvalid={!!errors.firstName}>
+                <FormLabel htmlFor="firstName">FirstName</FormLabel>
+                <Input
+                  id="firstName"
+                  {...register("firstName", { required: true })}
+                />
+                {errors.firstName && errors.firstName.type === "required" && (
+                  <FormErrorMessage>FirstNameは必須入力です。</FormErrorMessage>
+                )}
+              </FormControl>
+            </FormCard>
+            <Spacer h={8} />
+            <FormCard>
+              <FormControl isInvalid={!!errors.lastName}>
+                <FormLabel htmlFor="lastName">LastName</FormLabel>
+                <Input
+                  id="lastName"
+                  {...register("lastName", { required: true })}
+                />
+                {errors.lastName && errors.lastName.type === "required" && (
+                  <FormErrorMessage>LastNameは必須入力です。</FormErrorMessage>
+                )}
+              </FormControl>
+            </FormCard>
+            <Spacer h={8} />
+            <Input type="submit" value="次の画面へ" />
+          </form>
+        </Box>
+      </Flex>
+    </Layout>
   )
 }
 
