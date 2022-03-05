@@ -4,6 +4,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 module.exports = {
   entry: {
     app: "./src/index.tsx",
+    form1: "./src/pages/form1.tsx",
+    form2: "./src/pages/form2.tsx",
+    file_upload: "./src/pages/file-upload.tsx",
+    todo: "./src/pages/todo.tsx",
+    camera: "./src/pages/camera.tsx",
   },
   output: {
     filename: "[name].[contenthash:8].js",
