@@ -17,4 +17,3 @@ options:
   logging: CLOUD_LOGGING_ONLY
 substitutions:
   _IMAGE_NAME: webui-node
-  _CLOUDRUN_SERVICE_ACCOUNT: cloudrun-exec@sandbox-yuta4j1.iam.gserviceaccount.com
