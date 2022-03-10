@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="src/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react-testing</title>
+    <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+  </head>
+  <body>
+    <div id="root">
+      <div>
+        <label>メールアドレス</label>
+        <input type="email" name="email" size="30" maxlength="40" />
+      </div>
+      <div>
+        <label>パスワード</label>
+        <input type="password" name="password" size="30" maxlength="40" />
+      </div>
+      <button id="submit">ログインする</button>
+    </div>
+  </body>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    const hoge = '<%= fuga %>';
+    console.log(hoge);
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBIV_AJm3vRCDYPzRhQyiAWUjDLTCcITns",
+      authDomain: "sandbox-yuta4j1.firebaseapp.com",
+      projectId: "sandbox-yuta4j1",
+      storageBucket: "sandbox-yuta4j1.appspot.com",
+      messagingSenderId: "1081511942305",
+      appId: "1:1081511942305:web:b4642fe64957c684b678e0"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    const btnElm = document.getElementById("submit");
+    btnElm.addEventListener("click", () => {
+        const auth = getAuth();
+        const email = document.getElementsByName("email")[0].value;
+        const password = document.getElementsByName("password")[0].value;
+        console.log(email);
+        console.log(password);
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log("success: user", user);
+            // ...
+            const response = fetch("/auth", {
+                method: 'GET',
+                headers: {
+                    Authorization: 'Bearer ' + user.accessToken,
+                },
+            }).then(res => {
+                console.log(res)
+                window.location("/");
+            }).catch(err => {
+                console.log(err)
+            })
+        })
+        .catch((error) => {
+            console.log("error", error);
+            const errorCode = error.code;
+            const errorMessage = error.message;
+        });
+    });
+
+</script>
+</html>

@@ -12,6 +12,8 @@ COPY . .
 
 RUN npm run build && npm run build:server
 
+COPY ./server/login.ejs ./dist/assets/login.ejs
+
 #==================================================
 # Package install Layer
 FROM node:16-slim as node_modules

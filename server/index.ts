@@ -79,12 +79,20 @@ fastify.get("*", async (request, reply) => {
     console.log("ERROR!!", err)
   }
 
-  // const cs = request.cookies
-  // if (cs && cs.__sessionid) {
-  //   return reply.sendFile("index.html")
-  // } else {
-  //   return reply.view("dist/assets/login.ejs", { fuga: process.env.GOGO })
-  // }
+  const cs = request.cookies
+  if (cs && cs.__sessionid) {
+    try {
+      const res = await getAuth().verifySessionCookie(cs.__sessionid)
+      if (res) {
+        return reply.sendFile("index.html")
+      }
+    } catch (err) {
+      console.error(err)
+      return reply.view("assets/login.ejs", { fuga: process.env.GOGO })
+    }
+  } else {
+    return reply.view("assets/login.ejs", { fuga: process.env.GOGO })
+  }
   return reply.sendFile("index.html")
 })
 
