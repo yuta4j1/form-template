@@ -12,8 +12,6 @@ COPY . .
 
 RUN npm run build && npm run build:server
 
-COPY ./server/login.ejs ./dist/assets/login.ejs
-
 #==================================================
 # Package install Layer
 FROM node:16-slim as node_modules
@@ -33,6 +31,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 COPY --from=build /app/dist /app/dist
+COPY --from=build /app/server/login.ejs /app/dist/assets
 COPY --from=node_modules /app/node_modules /app/node_modules
 
 CMD ["dist/app"]
