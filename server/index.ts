@@ -71,10 +71,10 @@ fastify.get("*", async (request, reply) => {
   console.log(process.env.FUGA)
   console.log(process.env.HOGE)
   try {
-    const accessRes = await client.accessSecretVersion({
+    const [accessRes] = await client.accessSecretVersion({
       name: "projects/1081511942305/secrets/test-secret/versions/latest",
     })
-    console.log("accessRes", accessRes)
+    console.log("accessRes", JSON.parse(accessRes.payload.data.toString()))
   } catch (err) {
     console.log("ERROR!!", err)
   }
