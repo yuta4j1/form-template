@@ -35,6 +35,4 @@ COPY --from=build /app/dist /app/dist
 COPY --from=build /app/server/login.ejs /app/dist/assets/login.ejs
 COPY --from=node_modules /app/node_modules /app/node_modules
 
-RUN cd dist/assets && ls -lrt
-
 CMD ["dist/app"]

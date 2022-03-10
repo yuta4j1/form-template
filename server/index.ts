@@ -88,10 +88,10 @@ fastify.get("*", async (request, reply) => {
       }
     } catch (err) {
       console.error(err)
-      return reply.view("assets/login.ejs", { fuga: process.env.GOGO })
+      return reply.view("dist/assets/login.ejs", { fuga: process.env.GOGO })
     }
   } else {
-    return reply.view("assets/login.ejs", { fuga: process.env.GOGO })
+    return reply.view("dist/assets/login.ejs", { fuga: process.env.GOGO })
   }
   return reply.sendFile("index.html")
 })
