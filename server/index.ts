@@ -11,14 +11,13 @@ import fastifyStatic from "fastify-static"
 import { initializeApp } from "firebase-admin/app"
 import admin from "firebase-admin"
 import { getAuth } from "firebase-admin/auth"
-import firebaseConfig from "./firebaseConfig"
-import sakJson from "./serviceAccountKey.json"
+// import sakJson from "./serviceAccountKey.json"
 import pointOfViewPlugin from "point-of-view"
 import ejs from "ejs"
 
-const app = initializeApp({
-  credential: admin.credential.cert(sakJson),
-})
+// const app = initializeApp({
+//   credential: admin.credential.cert(sakJson),
+// })
 
 const fastify = Fastify({
   logger: true,
