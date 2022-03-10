@@ -24,14 +24,15 @@ RUN npm ci --only=production
 
 #==================================================
 # Run Layer
-FROM gcr.io/distroless/nodejs:16
+# FROM gcr.io/distroless/nodejs:16
+FROM node:16-slim
 
 WORKDIR /app
 
 ENV NODE_ENV=production
 
 COPY --from=build /app/dist /app/dist
-COPY --from=build /app/server/login.ejs /app/dist/assets/
+COPY --from=build /app/server/login.ejs /app/dist/assets/login.ejs
 COPY --from=node_modules /app/node_modules /app/node_modules
 
 RUN cd dist/assets && ls -lrt
