@@ -70,10 +70,9 @@ fastify.get("/auth", async (request, reply) => {
 fastify.get("*", async (request, reply) => {
   console.log(process.env.FUGA)
   console.log(process.env.HOGE)
-  console.log("SecretManagerClient*****", client)
   try {
     const accessRes = await client.accessSecretVersion({
-      name: "test-secret/latest",
+      name: "projects/1081511942305/secrets/test-secret/versions/latest",
     })
     console.log("accessRes", accessRes)
   } catch (err) {
