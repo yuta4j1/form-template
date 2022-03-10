@@ -14,6 +14,7 @@ import { getAuth } from "firebase-admin/auth"
 // import sakJson from "./serviceAccountKey.json"
 import pointOfViewPlugin from "point-of-view"
 import ejs from "ejs"
+import { SecretManagerServiceClient } from "@google-cloud/secret-manager"
 
 // const app = initializeApp({
 //   credential: admin.credential.cert(sakJson),
@@ -42,6 +43,8 @@ fastify.register(cookie, {
   parseOptions: {}, // options for parsing cookies
 } as FastifyCookieOptions)
 
+const client = new SecretManagerServiceClient()
+
 fastify.get("/auth", async (request, reply) => {
   const bearerToken = request.headers.authorization
   const idToken = bearerToken.split("Bearer ")[1]
@@ -67,6 +70,16 @@ fastify.get("/auth", async (request, reply) => {
 fastify.get("*", async (request, reply) => {
   console.log(process.env.FUGA)
   console.log(process.env.HOGE)
+  console.log("SecretManagerClient*****", client)
+  try {
+    const accessRes = await client.accessSecretVersion({
+      name: "test-secret/latest",
+    })
+    console.log("accessRes", accessRes)
+  } catch (err) {
+    console.log("ERROR!!", err)
+  }
+
   // const cs = request.cookies
   // if (cs && cs.__sessionid) {
   //   return reply.sendFile("index.html")
