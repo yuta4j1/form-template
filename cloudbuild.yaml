@@ -6,8 +6,8 @@ steps:
   entrypoint: npm
   args:
     - |
-      npm run build
-      npm run build:server
+      run build \
+      && run build:server
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: bash
   args:
