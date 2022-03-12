@@ -4,7 +4,10 @@ steps:
   args: ['install']
 - name: node:16
   entrypoint: npm
-  args: ['npm run build', '&&', 'npm run build:server']
+  args:
+    - |
+      npm run build
+      npm run build:server
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: bash
   args:
