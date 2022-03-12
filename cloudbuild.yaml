@@ -16,8 +16,7 @@ steps:
     - |
       cp app.yaml dist
       cp package.json package-lock.json dist
-      cd dist
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: 'bash'
-  args: ['-c', 'ls -lrt && gcloud config set app/cloud_build_timeout 1600 && gcloud app deploy --project=sandbox-yuta4j1']
+  args: ['-c', 'cd dist && ls -lrt &&  gcloud config set app/cloud_build_timeout 1600 && gcloud app deploy --project=sandbox-yuta4j1']
 timeout: '1600s'
