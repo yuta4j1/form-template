@@ -3,6 +3,6 @@ require('esbuild')
     entryPoints: ['server/index.ts'],
     bundle: true,
     platform: 'node',
-    outfile: 'dist/app.js',
+    outfile: 'dist/server.js',
   })
   .catch(() => process.exit(1))
